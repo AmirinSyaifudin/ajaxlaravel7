@@ -1,0 +1,3 @@
+git remote set-url origin https://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@github.com/AmirinSyaifudin/amirsy_shopichart
+git config --global github.token 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
+
