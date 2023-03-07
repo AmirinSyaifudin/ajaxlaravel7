@@ -18,35 +18,46 @@ class CutiController extends Controller
     public function index(Request $request)
     {
         
-        
         if ($request->ajax()) {
-            $cutis = Cuti::orderBy('nama_cuti','ASC');
-            // $data = Cuti::latest()->get();
+                $cutis = Cuti::orderBy('nama_cuti','ASC');
+        
                 return datatables::of($cutis)
-                ->editColumn('image', function ($row) {
-                    return '<img with="80" height="80" src="' . url('assets/covers/', $row->image) . '">';
+                ->editColumn('cover', function ($row) {
+                    return '<img with="80" height="80" src="' . url('assets/covers/', $row->cover) . '">';
                 })
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"
-                        data-original-title="Edit" 
-                        class="edit btn btn-primary btn-sm editCuti">EDIT</a>';
-                    $btn .= '&nbsp;&nbsp;';
-                    $btn .= '&nbsp;&nbsp;';
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-cuti_id="'.$row->cuti_id .'" 
-                                        data-original-title="Delete" class="btn btn-danger btn-sm deleteCuti">Delete
-                                </a>';
-                    return $btn;
+
                 })
-                ->rawColumns(['action','image'])
-                ->make(true);
-                // ->toJson();
-                // exit();
+                ->rawColumns(['action','cover'])
+                ->toJson();
+                exit();
             }
     
         return view('admin.cuti.index');
-        // return view('admin.cuti.index', compact('cutis'));
     }
+
+    // public function index()
+    // {
+    //     $cuti = DB::table('cuti')
+    //         ->select(
+    //             'cuti.cuti_id',
+    //             'cuti.cover',
+    //             'cuti.nama_cuti',
+    //             'cuti.tanggal_cuti',
+    //             'cuti.tanggal_selesai_cuti',
+    //             'cuti.keterangan',
+    //             'cuti.lama_cuti',
+    //         )
+    //         ->orderBy('nama_cuti', 'ASC')
+    //         ->get();
+
+    //     $data = array(
+    //         'cuti'       => $cuti,
+    //     );
+    
+    //     return view('admin.cuti.index', $data);
+    // }
 
     /**
      * Show the form for creating a new resource.

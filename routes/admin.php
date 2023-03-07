@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index')->name('dashboard');
 // DASHBOARD
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
+Route::get('/provinsi/data', 'DataController@provinsi')->name('provinsi.data');
 Route::get('/provinsi', 'ProvinsiController@index')->name('provinsi.index');
 Route::get('/provinsi/create', 'ProvinsiController@create')->name('provinsi.create');
 // Route::get('/provinsi', 'provinsiController@data')->name('provinsi.data');
@@ -46,6 +47,7 @@ Route::get('/karyawan/exportpdf', 'KaryawanController@exportPdf')->name('karyawa
 
 
 // cuti
+Route::get('/cuti/data', 'DataController@cuti')->name('cuti.data');
 Route::get('/cuti', 'CutiController@index')->name('cuti.index');
 Route::get('/cuti/create', 'CutiController@create')->name('cuti.create');
 Route::post('/cuti', 'CutiController@store')->name('cuti.store');
